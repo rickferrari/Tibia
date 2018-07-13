@@ -1,0 +1,11 @@
+achievements
+axe
+club
+distance
+experience
+fishing
+fist
+loyalty
+magic
+shielding
+sword

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="tibia">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.9">
+    <root id="1">
+      <ServerVersion>3.20.1</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="main">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <collation id="3" parent="1" name="BINARY"/>
+    <collation id="4" parent="1" name="NOCASE"/>
+    <collation id="5" parent="1" name="RTRIM"/>
+    <table id="6" parent="2" name="category"/>
+    <table id="7" parent="2" name="char_infor"/>
+    <table id="8" parent="2" name="sqlite_master">
+      <System>1</System>
+    </table>
+    <table id="9" parent="2" name="sqlite_sequence">
+      <System>1</System>
+    </table>
+    <table id="10" parent="2" name="top_distance"/>
+    <table id="11" parent="2" name="top_magiclevel"/>
+    <table id="12" parent="2" name="world_list"/>
+    <view id="13" parent="2" name="Top"/>
+    <view id="14" parent="2" name="Top1"/>
+    <column id="15" parent="6" name="Id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="16" parent="6" name="Nome">
+      <Position>2</Position>
+      <DataType>VARCHAR(20)|0s</DataType>
+    </column>
+    <column id="17" parent="6" name="Extract_data">
+      <Position>3</Position>
+      <DataType>TIMESTAMP|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <key id="18" parent="6">
+      <ColNames>Id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="19" parent="7" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="20" parent="7" name="Name">
+      <Position>2</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <column id="21" parent="7" name="Sex">
+      <Position>3</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+    </column>
+    <column id="22" parent="7" name="Vocation">
+      <Position>4</Position>
+      <DataType>VARCHAR(20)|0s</DataType>
+    </column>
+    <column id="23" parent="7" name="Level">
+      <Position>5</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="24" parent="7" name="Achievement">
+      <Position>6</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="25" parent="7" name="Residence">
+      <Position>7</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <column id="26" parent="7" name="Last_Login">
+      <Position>8</Position>
+      <DataType>VARCHAR(80)|0s</DataType>
+    </column>
+    <column id="27" parent="7" name="Extract_data">
+      <Position>9</Position>
+      <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <key id="28" parent="7">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="29" parent="8" name="type">
+      <Position>1</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="30" parent="8" name="name">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="31" parent="8" name="tbl_name">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="32" parent="8" name="rootpage">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="33" parent="8" name="sql">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="34" parent="9" name="name">
+      <Position>1</Position>
+    </column>
+    <column id="35" parent="9" name="seq">
+      <Position>2</Position>
+    </column>
+    <column id="36" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="37" parent="10" name="Rank">
+      <Position>2</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="38" parent="10" name="Name">
+      <Position>3</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <column id="39" parent="10" name="Vocation">
+      <Position>4</Position>
+      <DataType>VARCHAR(20)|0s</DataType>
+    </column>
+    <column id="40" parent="10" name="Level">
+      <Position>5</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="41" parent="10" name="World">
+      <Position>6</Position>
+      <DataType>VARCHAR(25)|0s</DataType>
+    </column>
+    <column id="42" parent="10" name="Link">
+      <Position>7</Position>
+      <DataType>VARCHAR(100)|0s</DataType>
+    </column>
+    <column id="43" parent="10" name="Extract_data">
+      <Position>8</Position>
+      <DataType>TIMESTAMP|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <key id="44" parent="10">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="45" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="46" parent="11" name="Rank">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="47" parent="11" name="Name">
+      <Position>3</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <column id="48" parent="11" name="Vocation">
+      <Position>4</Position>
+      <DataType>VARCHAR(20)|0s</DataType>
+    </column>
+    <column id="49" parent="11" name="Level">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="50" parent="11" name="World">
+      <Position>6</Position>
+      <DataType>VARCHAR(25)|0s</DataType>
+    </column>
+    <column id="51" parent="11" name="Extract_data">
+      <Position>7</Position>
+      <DataType>timestamp|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="52" parent="11">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="53" parent="12" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="54" parent="12" name="World">
+      <Position>2</Position>
+      <DataType>VARCHAR(25)|0s</DataType>
+    </column>
+    <column id="55" parent="12" name="Online">
+      <Position>3</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="56" parent="12" name="Location">
+      <Position>4</Position>
+      <DataType>VARCHAR(25)|0s</DataType>
+    </column>
+    <column id="57" parent="12" name="PvP_Type">
+      <Position>5</Position>
+      <DataType>VARCHAR(50)|0s</DataType>
+    </column>
+    <column id="58" parent="12" name="BattlEye">
+      <Position>6</Position>
+      <DataType>VARCHAR(10)|0s</DataType>
+    </column>
+    <column id="59" parent="12" name="Additional_Information">
+      <Position>7</Position>
+      <DataType>VARCHAR(50)|0s</DataType>
+    </column>
+    <column id="60" parent="12" name="Extract_data">
+      <Position>8</Position>
+      <DataType>TIMESTAMP|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <key id="61" parent="12">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="62" parent="13" name="Rank">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="63" parent="13" name="Name">
+      <Position>2</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <column id="64" parent="13" name="Distance">
+      <Position>3</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="65" parent="13" name="Magic_Level">
+      <Position>4</Position>
+    </column>
+    <column id="66" parent="13" name="World">
+      <Position>5</Position>
+      <DataType>VARCHAR(25)|0s</DataType>
+    </column>
+    <column id="67" parent="13" name="PVP_Type">
+      <Position>6</Position>
+      <DataType>VARCHAR(50)|0s</DataType>
+    </column>
+    <column id="68" parent="14" name="Rank">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="69" parent="14" name="Name">
+      <Position>2</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+    </column>
+    <column id="70" parent="14" name="Char_Level">
+      <Position>3</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="71" parent="14" name="Distance">
+      <Position>4</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="72" parent="14" name="Magic_Level">
+      <Position>5</Position>
+    </column>
+    <column id="73" parent="14" name="Achievement">
+      <Position>6</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="74" parent="14" name="World">
+      <Position>7</Position>
+      <DataType>VARCHAR(25)|0s</DataType>
+    </column>
+    <column id="75" parent="14" name="PVP_Type">
+      <Position>8</Position>
+      <DataType>VARCHAR(50)|0s</DataType>
+    </column>
+  </database-model>
+</dataSource>

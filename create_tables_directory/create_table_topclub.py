@@ -1,4 +1,3 @@
-# 02_create_schema.py
 import sqlite3
 
 # conectando...
@@ -10,15 +9,15 @@ cursor = conn.cursor()
 
 #Dropando tabela (CASO TENHA NECESSIDADE)
 cursor.execute("""
-Drop TABLE top_distance 
+Drop TABLE  if exists top_club 
 """)
 conn.commit()
 print('Tabela dropada com sucesso.')
 
 
-# criando a tabela top_distance (schema)
+# criando a tabela top_club (schema)
 cursor.execute("""
-CREATE TABLE top_distance (
+CREATE TABLE if not exists top_club (
     id INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
     Rank INTEGER  NULL,
     Name VARCHAR(30)  NULL,
@@ -30,7 +29,7 @@ CREATE TABLE top_distance (
 );
 """)
 conn.commit()
-print('Tabela top_distance criada com sucesso.')
+print('Tabela top_club criada com sucesso.')
 
 
 # desconectando...

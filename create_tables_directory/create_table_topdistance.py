@@ -10,28 +10,27 @@ cursor = conn.cursor()
 
 #Dropando tabela (CASO TENHA NECESSIDADE)
 cursor.execute("""
-Drop TABLE world_list 
+Drop TABLE if exists top_distance 
 """)
 conn.commit()
 print('Tabela dropada com sucesso.')
 
 
-# criando a tabela world_list (schema)
+# criando a tabela top_distance (schema)
 cursor.execute("""
-CREATE TABLE world_list (
+CREATE TABLE  if not exists top_distance (
     id INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
+    Rank INTEGER  NULL,
+    Name VARCHAR(30)  NULL,
+    Vocation VARCHAR(20)  NULL,
+    Level INTEGER  NULL,
     World VARCHAR(25)  NULL,
-    Online INTEGER  NULL,
-    Location VARCHAR(25)  NULL,
-    PvP_Type VARCHAR(50)  NULL,
-    BattlEye VARCHAR(10)  NULL,
-    Additional_Information VARCHAR(50)  NULL,
+    Link VARCHAR(100) NULL,
     Extract_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 """)
-print('Tabela world_list criada com sucesso.')
-
-
+conn.commit()
+print('Tabela top_distance criada com sucesso.')
 
 
 # desconectando...

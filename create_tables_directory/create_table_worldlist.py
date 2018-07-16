@@ -1,3 +1,4 @@
+# 02_create_schema.py
 import sqlite3
 
 # conectando...
@@ -9,27 +10,29 @@ cursor = conn.cursor()
 
 #Dropando tabela (CASO TENHA NECESSIDADE)
 cursor.execute("""
-Drop TABLE  if exists top_club 
+Drop TABLE world_list 
 """)
 conn.commit()
 print('Tabela dropada com sucesso.')
 
 
-# criando a tabela top_club (schema)
+# criando a tabela world_list (schema)
 cursor.execute("""
-CREATE TABLE top_club (
+CREATE TABLE world_list (
     id INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
-    Rank INTEGER  NULL,
-    Name VARCHAR(30)  NULL,
-    Vocation VARCHAR(20)  NULL,
-    Level INTEGER  NULL,
     World VARCHAR(25)  NULL,
-    Link VARCHAR(100) NULL,
+    Online INTEGER  NULL,
+    Location VARCHAR(25)  NULL,
+    PvP_Type VARCHAR(50)  NULL,
+    BattlEye VARCHAR(10)  NULL,
+    Additional_Information VARCHAR(50)  NULL,
     Extract_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 """)
 conn.commit()
-print('Tabela top_club criada com sucesso.')
+print('Tabela world_list criada com sucesso.')
+
+
 
 
 # desconectando...

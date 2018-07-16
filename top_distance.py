@@ -17,10 +17,8 @@ distance = []
 uWorlds = ''
 
     # Load File
-##worlds = list(open('mundo_name.txt','r'))
 lists = list(open('category.txt','r'))
     # Remove /n
-##worlds = [s.rstrip() for s in worlds]
 lists = [s.rstrip() for s in lists]
 
 

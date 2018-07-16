@@ -18,12 +18,6 @@ chars2 = []
 chars3 = []
 cc = ['Dudys','Lord+Kendo','Lewy','Eagle+Askara','Elrik']
 
-##    # Load File
-##chars = list(open('char_name.txt','r'))
-##    # Remove /n
-##chars = [s.rstrip() for s in chars]
-
-
         # Conectando a base de dados
 conn = sqlite3.connect('tibia.db')
 cursor = conn.cursor()
@@ -86,35 +80,35 @@ for u in url:
         chars0 = []
 
 
-for u in chars1[4]:
-        if 'Loyalty Title:' not in u:
+for ux in chars1[4]:
+        if 'Loyalty Title:' not in ux:
                 continue
         else:
-                print(u)
+                print(ux)
 
 lista = list(chars0)
 
 uu=(len(chars1)-1)
 tt = 0
 key = 0
-     for i in chars1[0]:
-        for u in chars1[tt]:
-                if u[0] == 'Name:' and u[1] in chars:
-##                        print(u[0],u[1] if len(u[1]) > 1 else 'null')
-                        chars2 = []
-##                        chars2.append(u[0])
-                        chars2.append(u[1])
-                elif u[0] in ['Sex:','Vocation:','Level:','Achievement Points:','Residence:','Last Login:','Loyalty Title:']:
-##                        print(u[0],u[1] if len(u[1]) > 1 else 'null')
-##                        chars2.append(u[0].replace(u'\xa0', ' '))
-                        chars2.append((u[1] if len(u[1]) > 1 else 'NULL').replace(u'\xa0', ' '))
-                elif 'Loyalty Title:' not in chars1[tt] and u[0] == 'Last Login:':
-                        chars2.append('null')
-        chars3.append(chars2)
-        if tt == uu:
-                break
-        else:
-                tt+=1
+for i in chars1[0]:
+   for uz in chars1[tt]:
+        if uz[0] == 'Name:' and uz[1] in chars:
+            print(uz[0],uz[1] if len(uz[1]) > 1 else 'null')
+            chars2 = []
+            chars2.append(uz[0])
+            chars2.append(uz[1])
+        elif uz[0] in ['Sex:','Vocation:','Level:','Achievement Points:','Residence:','Last Login:','Loyalty Title:']:
+            print(uz[0],uz[1] if len(uz[1]) > 1 else 'null')
+            chars2.append(uz[0].replace(u'\xa0', ' '))
+            chars2.append((uz[1] if len(uz[1]) > 1 else 'NULL').replace(u'\xa0', ' '))
+        elif 'Loyalty Title:' not in chars1[tt] and uz[0] == 'Last Login:':
+            chars2.append('null')
+   chars3.append(chars2)
+   if tt == uu:
+       break
+   else:
+       tt+=1
 
 print('####################################################################')
 for i in chars3:

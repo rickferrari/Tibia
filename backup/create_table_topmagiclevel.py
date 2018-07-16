@@ -25,6 +25,7 @@ CREATE TABLE top_magiclevel (
         Vocation  VARCHAR(20),
         Level    integer,
         World    VARCHAR(25),
+        Link VARCHAR(100) NULL,
         Extract_data [timestamp] NOT NULL
 );
 """)

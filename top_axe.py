@@ -12,7 +12,7 @@ now = datetime.now().strftime("%Y-%m-%d %H:%M:%S, %A")
 worlds = []
 lists = []
 url = []
-sword = []
+axe = []
 
     # Conectando a base de dados
 conn = sqlite3.connect('tibia.db')
@@ -26,7 +26,7 @@ for cRow in worldsRow:
         worlds.append((worldsRow[w][0]).replace(u' ', '+'))
         w+=1
         
-cursor.execute("""select nome from category where nome='sword'""")
+cursor.execute("""select nome from category where nome='axe'""")
 listsRow = cursor.fetchall()
 ####l=0
 ####for lRow in listsRow:
@@ -72,18 +72,18 @@ for u in url:
             cols.append('https://secure.tibia.com/community/?subtopic=characters&name='+(cols[1].replace(u' ', '+')))
             cols.append(now) #Insere a data de extração em cada linha
             if len(cols[0]) < 3: #Eliminando a linha de "titulo"
-                sword.append([ele for ele in cols if ele]) #Livrar-se de valores vazios
-        lista = list(sword)
+                axe.append([ele for ele in cols if ele]) #Livrar-se de valores vazios
+        lista = list(axe)
 
         #Inset data in table
-cursor.execute("""DELETE FROM top_sword""")
+cursor.execute("""DELETE FROM top_axe""")
 conn.commit()
-cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_sword';""")
+cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_axe';""")
 conn.commit()
-for dmain in sword:
+for dmain in axe:
         ####print(dmain)
         cursor.execute("""
-        INSERT INTO top_sword (Rank, Name, Vocation, Level, World, Link, Extract_data)
+        INSERT INTO top_axe (Rank, Name, Vocation, Level, World, Link, Extract_data)
         VALUES (?,?,?,?,?,?,?)""",(dmain))
 conn.commit()
 print('Dados inseridos com sucesso.')

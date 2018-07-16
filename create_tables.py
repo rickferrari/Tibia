@@ -77,6 +77,7 @@ CREATE TABLE if not exists top_magiclevel (
         Vocation  VARCHAR(20),
         Level    integer,
         World    VARCHAR(25),
+        Link VARCHAR(100) NULL,
         Extract_data [timestamp] NOT NULL
 );
 """)
@@ -117,7 +118,7 @@ CREATE TABLE if not exists top_loyalty (
     Rank INTEGER  NULL,
     Name VARCHAR(30)  NULL,
     Vocation VARCHAR(20)  NULL,
-    Title VARCHAR(25)
+    Title VARCHAR(25),
     Points INTEGER  NULL,
     World VARCHAR(25)  NULL,
     Link VARCHAR(100) NULL,

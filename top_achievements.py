@@ -12,7 +12,7 @@ now = datetime.now().strftime("%Y-%m-%d %H:%M:%S, %A")
 worlds = []
 lists = []
 url = []
-achievements = []
+distance = []
 
     # Conectando a base de dados
 conn = sqlite3.connect('tibia.db')
@@ -26,7 +26,7 @@ for cRow in worldsRow:
         worlds.append((worldsRow[w][0]).replace(u' ', '+'))
         w+=1
         
-cursor.execute("""select nome from category where nome='achievements'""")
+cursor.execute("""select nome from category where nome='distance'""")
 listsRow = cursor.fetchall()
 ####l=0
 ####for lRow in listsRow:
@@ -44,18 +44,6 @@ upag = '&currentpage=' # Páginas até 12.
 for w in worlds:
         for p in range(1,13): # Definindo as páginas de extração, até 12 (marcar 13 no range)
             url.append(urli +w+ '&list=' +lists+ '&profession=' +str(0)+ '&currentpage=' +str(p))
-
-cursor.execute("""DELETE FROM check_tibia""")
-conn.commit()
-cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='check_tibia';""")
-conn.commit()
-for dmain in url:
-    ####print(dmain)
-    cursor.execute("""
-        INSERT INTO check_tibia (Name, Extract_data)
-        VALUES (?,?)""", (dmain,now))
-conn.commit()
-
 
         #SOUP
 for u in url:
@@ -84,18 +72,18 @@ for u in url:
             cols.append('https://secure.tibia.com/community/?subtopic=characters&name='+(cols[1].replace(u' ', '+')))
             cols.append(now) #Insere a data de extração em cada linha
             if len(cols[0]) < 3: #Eliminando a linha de "titulo"
-                achievements.append([ele for ele in cols if ele]) #Livrar-se de valores vazios
-        lista = list(achievements)
+                    distance.append([ele for ele in cols if ele]) #Livrar-se de valores vazios
+        lista = list(distance)
 
         #Inset data in table
-cursor.execute("""DELETE FROM top_achievements""")
+cursor.execute("""DELETE FROM top_distance""")
 conn.commit()
-cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_achievements';""")
+cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_distance';""")
 conn.commit()
-for dmain in achievements:
+for dmain in distance:
         ####print(dmain)
         cursor.execute("""
-        INSERT INTO top_achievements (Rank, Name, Vocation, Points, World, Link, Extract_data)
+        INSERT INTO top_distance (Rank, Name, Vocation, Level, World, Link, Extract_data)
         VALUES (?,?,?,?,?,?,?)""",(dmain))
 conn.commit()
 print('Dados inseridos com sucesso.')

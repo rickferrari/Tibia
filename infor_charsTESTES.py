@@ -16,7 +16,8 @@ chars0 = []
 chars1 = []
 chars2 = []
 chars3 = []
-cc = ['Dudys','Lord+Kendo','Lewy','Eagle+Askara','Elrik']
+cc = ['Dudys','Elrik']
+#cc = ['Dudys','Lord+Kendo','Lewy','Eagle+Askara','Elrik']
 
         # Conectando a base de dados
 conn = sqlite3.connect('tibia.db')
@@ -28,7 +29,7 @@ charsRow = cursor.fetchall()
 ##print(charsRow[1][0])
 c=0
 for cRow in charsRow:
-##        chars.append((charsRow[c][0]).replace(u' ', '+'))
+    ##chars.append((charsRow[c][0]).replace(u' ', '+'))
         chars.append(charsRow[c][0])
         c+=1
 ##print(chars)
@@ -40,7 +41,7 @@ urli = 'https://secure.tibia.com/community/?subtopic=characters&name='
 
 for c in cc: #chars:
         url.append(urli + (c.replace(u' ', '+')))
-##        print(url)
+        ##print(url)
 
 
 
@@ -63,7 +64,7 @@ for u in url:
                 print ("Erro. Tentando novamente")
                 
         soup = BeautifulSoup(r.text, 'html.parser')
-##        print (r.status_code) #CODE 200 ELE CONSEGUE ACESSAR A PAGINA (TESTE)
+        ##print (r.status_code) #CODE 200 ELE CONSEGUE ACESSAR A PAGINA (TESTE)
         table = soup.find('div', attrs={'class':'BoxContent'})
         rows = table.find_all('tr')
         
@@ -72,25 +73,43 @@ for u in url:
                 cols = row.find_all('td')
                 cols = [ele.text.strip() for ele in cols]
                 cols.append(now) #Insere a data de extração em cada linha
-##                if len(cols[0]) < 3: #Eliminando a linha de "titulo"
-##                chars2.append(chars1)
+                ##if len(cols[0]) < 3: #Eliminando a linha de "titulo"
+                ##chars2.append(chars1)
                 chars0.append([ele for ele in cols if ele]) #Livrar-se de valores
         if len(chars0) > 0:
                 chars1.append(chars0)
         chars0 = []
-
-
-for ux in chars1[4]:
-        if 'Loyalty Title:' not in ux:
-                continue
-        else:
-                print(ux)
-
 lista = list(chars0)
+
+#for ux in chars1[4]:
+#        if 'Loyalty Title:' not in ux:
+#                continue
+#        else:
+#                print(ux)
+
+
+
 
 uu=(len(chars1)-1)
 tt = 0
 key = 0
+#for i in chars1:
+#    tt = 0
+#    print(tt)
+#    print(len(i))
+#    print(i)
+#    while tt < len(i):
+#        if 'Loyalty Title:' in i[tt]:
+#            print(tt)
+#            print(i)
+#            break
+#        if tt == (len(i)-1):
+#            print('LIMITE de TT é: {}'.format(tt))
+#        print('TT é: {}'.format(tt))
+#        tt+=1
+#    input('ENTER...')
+
+
 for i in chars1[0]:
    for uz in chars1[tt]:
         if uz[0] == 'Name:' and uz[1] in chars:
@@ -102,8 +121,15 @@ for i in chars1[0]:
             print(uz[0],uz[1] if len(uz[1]) > 1 else 'null')
             chars2.append(uz[0].replace(u'\xa0', ' '))
             chars2.append((uz[1] if len(uz[1]) > 1 else 'NULL').replace(u'\xa0', ' '))
-        elif 'Loyalty Title:' not in chars1[tt] and uz[0] == 'Last Login:':
-            chars2.append('null')
+            if uz[0] == 'Last Login:' and uz[0] not in ('Loyalty Title:'):
+                chars2.append('Loyalty Title:')
+                chars2.append('NOT HAVE')
+        #elif 'Loyalty Title:' not in chars1[tt] and uz[0] == 'Last Login:':
+        #elif 'Loyalty Title:' not in chars1[tt] and uz[0] in ('Last Login:'):
+        #    #print('X')
+        #    #if uz[0] in ('Last Login:'):
+        #    chars2.append('Loyalty Title:')
+        #    chars2.append('NOT HAVE')
    chars3.append(chars2)
    if tt == uu:
        break

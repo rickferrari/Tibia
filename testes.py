@@ -116,9 +116,9 @@ for dmain in chars3:
     ####print(dmain[0],dmain[1],dmain[2],dmain[3],dmain[4],dmain[5],dmain[6],now)
     ####print(dmain)
     cursor.execute("""
-        INSERT INTO char_infor (Name, Sex, Vocation, Level, Achievement, Residence, Last_Login, Extract_data)
-        VALUES (?,?,?,?,?,?,?,?)
-        """, (dmain[0], dmain[1], dmain[2], dmain[3], dmain[4], dmain[5], dmain[6], now))
+        INSERT INTO char_infor (Name, Sex, Vocation, Level, Achievement, Residence, Last_Login, Loyalty_Title, Extract_data)
+        VALUES (?,?,?,?,?,?,?,?,?)
+        """, (dmain[0], dmain[1], dmain[2], dmain[3], dmain[4], dmain[5], dmain[6], dmain[7], now))
 conn.commit()
 print('Dados inseridos com sucesso.')
 conn.close()

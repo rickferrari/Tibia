@@ -27,7 +27,7 @@ ui=0
 for cRow in urlRow:
         url.append((urlRow[ui][0]).replace(u' ', '+'))
         ui+=1
-print(url)
+#print(url)
 
 
 ##########################################################################################

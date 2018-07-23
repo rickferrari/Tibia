@@ -42,8 +42,8 @@ uprof = '&profession=' # 0-ALL, 1-Knights, 2-Paladins, 3-Sorcerers, 4-Druids
 upag = '&currentpage=' # Páginas até 12.
 
 for w in worlds:
-        for p in range(1,6): # Definindo as páginas de extração, até 12 (marcar 13 no range)
-            url.append(urli +w+ '&list=' +lists+ '&profession=' +str(2)+ '&currentpage=' +str(p))
+        for p in range(1,13): # Definindo as páginas de extração, até 12 (marcar 13 no range)
+            url.append(urli +w+ '&list=' +lists+ '&profession=' +str(0)+ '&currentpage=' +str(p))
 
         #SOUP
 for u in url:

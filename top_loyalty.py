@@ -12,7 +12,7 @@ now = datetime.now().strftime("%Y-%m-%d %H:%M:%S, %A")
 worlds = []
 lists = []
 url = []
-distance = []
+loyalty = []
 
     # Conectando a base de dados
 conn = sqlite3.connect('tibia.db')
@@ -26,7 +26,7 @@ for cRow in worldsRow:
         worlds.append((worldsRow[w][0]).replace(u' ', '+'))
         w+=1
         
-cursor.execute("""select nome from category where nome='distance'""")
+cursor.execute("""select nome from category where nome='loyalty'""")
 listsRow = cursor.fetchall()
 ####l=0
 ####for lRow in listsRow:
@@ -42,8 +42,8 @@ uprof = '&profession=' # 0-ALL, 1-Knights, 2-Paladins, 3-Sorcerers, 4-Druids
 upag = '&currentpage=' # Páginas até 12.
 
 for w in worlds:
-        for p in range(1,2): # Definindo as páginas de extração, até 12 (marcar 13 no range)
-            url.append(urli +w+ '&list=' +lists+ '&profession=' +str(2)+ '&currentpage=' +str(p))
+        for p in range(1,13): # Definindo as páginas de extração, até 12 (marcar 13 no range)
+            url.append(urli +w+ '&list=' +lists+ '&profession=' +str(0)+ '&currentpage=' +str(p))
 
         #SOUP
 for u in url:
@@ -72,19 +72,19 @@ for u in url:
             cols.append('https://secure.tibia.com/community/?subtopic=characters&name='+(cols[1].replace(u' ', '+')))
             cols.append(now) #Insere a data de extração em cada linha
             if len(cols[0]) < 3: #Eliminando a linha de "titulo"
-                    distance.append([ele for ele in cols if ele]) #Livrar-se de valores vazios
-        lista = list(distance)
+                loyalty.append([ele for ele in cols if ele]) #Livrar-se de valores vazios
+        lista = list(loyalty)
 
         #Inset data in table
-cursor.execute("""DELETE FROM top_distance""")
+cursor.execute("""DELETE FROM top_loyalty""")
 conn.commit()
-cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_distance';""")
+cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_loyalty';""")
 conn.commit()
-for dmain in distance:
+for dmain in loyalty:
         ####print(dmain)
         cursor.execute("""
-        INSERT INTO top_distance (Rank, Name, Vocation, Level, World, Link, Extract_data)
-        VALUES (?,?,?,?,?,?,?)""",(dmain))
+        INSERT INTO top_loyalty (Rank, Name, Vocation, Title, Points, World, Link, Extract_data)
+        VALUES (?,?,?,?,?,?,?,?)""",(dmain))
 conn.commit()
 print('Dados inseridos com sucesso.')
 conn.close()

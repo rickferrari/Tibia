@@ -10,9 +10,8 @@ now = datetime.now().strftime("%Y-%m-%d %H:%M:%S, %A")
 
 # Criando variaveis
 worlds = []
-lists = []
 url = []
-distance = []
+axe = []
 
 # Conectando a base de dados
 conn = sqlite3.connect('tibia.db')
@@ -26,24 +25,24 @@ for cRow in worldsRow:
     worlds.append((worldsRow[w][0]).replace(u' ', '+'))
     w += 1
 
-cursor.execute("""select nome from category where nome='distance'""")
-listsRow = cursor.fetchall()
-####l=0
-####for lRow in listsRow:
-####        lists.append((listsRow[l][0]).replace(u' ', '+'))
-####        l+=1
-lists = listsRow[0][0]
+cursor.execute("""
+        SELECT Link FROM url_Extrations
+        WHERE
+              Category = 'axe'
+          and VocationNAME = 'Paladins'
+        """)
+urlRow = cursor.fetchall()
+ul = 0
+for cRow in urlRow:
+    url.append(urlRow[ul][0])
+    ul += 1
 
-# Montando URL de extração
-urli = 'https://secure.tibia.com/community/?subtopic=highscores&world='
-ulist = '&list='  # Skills: 0-achievements, 1-axe , 2-club, 3-distance, 4-experience, 5-fishing,
-# 6-fist, 7-loyalty, 8-magic, 9-shielding, 10-sword
-uprof = '&profession='  # 0-ALL, 1-Knights, 2-Paladins, 3-Sorcerers, 4-Druids
-upag = '&currentpage='  # Páginas até 12.
-
-for w in worlds:
-    for p in range(1, 13):  # Definindo as páginas de extração, até 12 (marcar 13 no range)
-        url.append(urli + w + '&list=' + lists + '&profession=' + str(2) + '&currentpage=' + str(p))
+# # Montando URL de extração
+# # URL = 'https://secure.tibia.com/community/?subtopic=highscores&world='
+# # Category = {0;'achievements', 1;'axe' , 2;'club', 3;'distance', 4;'experience', 5;'fishing',
+#               6;'fist', 7;'loyalty', 8;'magic', 9;'shielding', 10;'sword'}
+# # Profession = {0;'ALL', 1;'Knights', 2;'Paladins', 3;'Sorcerers', 4;'Druids'}
+# # Páginas até 12.
 
     # SOUP
 for u in url:
@@ -72,18 +71,18 @@ for u in url:
         cols.append('https://secure.tibia.com/community/?subtopic=characters&name=' + (cols[1].replace(u' ', '+')))
         cols.append(now)  # Insere a data de extração em cada linha
         if len(cols[0]) < 3:  # Eliminando a linha de "titulo"
-            distance.append([ele for ele in cols if ele])  # Livrar-se de valores vazios
-    lista = list(distance)
+            axe.append([ele for ele in cols if ele])  # Livrar-se de valores vazios
+    lista = list(axe)
 
     # Inset data in table
-cursor.execute("""DELETE FROM top_distance""")
+cursor.execute("""DELETE FROM top_axe""")
 conn.commit()
-cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_distance';""")
+cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_axe';""")
 conn.commit()
-for dmain in distance:
+for dmain in axe:
     ####print(dmain)
     cursor.execute("""
-        INSERT INTO top_distance (Rank, Name, Vocation, Level, World, Link, Extract_data)
+        INSERT INTO top_axe (Rank, Name, Vocation, Level, World, Link, Extract_data)
         VALUES (?,?,?,?,?,?,?)""", (dmain))
 conn.commit()
 print('Dados inseridos com sucesso.')

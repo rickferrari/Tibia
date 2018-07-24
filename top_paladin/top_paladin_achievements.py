@@ -1,7 +1,7 @@
 # IMPORTS
 import requests
 from bs4 import BeautifulSoup
-#import pandas as pd
+####import pandas as pd
 from datetime import datetime
 import sqlite3
 
@@ -10,8 +10,9 @@ now = datetime.now().strftime("%Y-%m-%d %H:%M:%S, %A")
 
 # Criando variaveis
 worlds = []
+lists = []
 url = []
-distance = []
+achievements = []
 
 # Conectando a base de dados
 conn = sqlite3.connect('tibia.db')
@@ -25,10 +26,11 @@ for cRow in worldsRow:
     worlds.append((worldsRow[w][0]).replace(u' ', '+'))
     w += 1
 
+
 cursor.execute("""
         SELECT Link FROM url_Extrations
         WHERE
-              Category = 'distance'
+              Category = 'achievements'
           and VocationNAME = 'Paladins'
         """)
 urlRow = cursor.fetchall()
@@ -43,7 +45,6 @@ for cRow in urlRow:
 #               6;'fist', 7;'loyalty', 8;'magic', 9;'shielding', 10;'sword'}
 # # Profession = {0;'ALL', 1;'Knights', 2;'Paladins', 3;'Sorcerers', 4;'Druids'}
 # # Páginas até 12.
-
 
     # SOUP
 for u in url:
@@ -72,18 +73,18 @@ for u in url:
         cols.append('https://secure.tibia.com/community/?subtopic=characters&name=' + (cols[1].replace(u' ', '+')))
         cols.append(now)  # Insere a data de extração em cada linha
         if len(cols[0]) < 3:  # Eliminando a linha de "titulo"
-            distance.append([ele for ele in cols if ele])  # Livrar-se de valores vazios
-    lista = list(distance)
+            achievements.append([ele for ele in cols if ele])  # Livrar-se de valores vazios
+    lista = list(achievements)
 
     # Inset data in table
-cursor.execute("""DELETE FROM top_distance""")
+cursor.execute("""DELETE FROM top_achievements""")
 conn.commit()
-cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_distance';""")
+cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_achievements';""")
 conn.commit()
-for dmain in distance:
+for dmain in achievements:
     ####print(dmain)
     cursor.execute("""
-        INSERT INTO top_distance (Rank, Name, Vocation, Level, World, Link, Extract_data)
+        INSERT INTO top_achievements (Rank, Name, Vocation, Points, World, Link, Extract_data)
         VALUES (?,?,?,?,?,?,?)""", (dmain))
 conn.commit()
 print('Dados inseridos com sucesso.')

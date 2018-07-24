@@ -14,7 +14,7 @@ url = []
 magic = []
 
 # Conectando a base de dados
-conn = sqlite3.connect('tibia.db')
+conn = sqlite3.connect('../tibia.db')
 cursor = conn.cursor()
 
 # Coletando dados do SQL

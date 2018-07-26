@@ -29,7 +29,7 @@ for cRow in worldsRow:
 cursor.execute("""
         SELECT Link FROM url_Extrations
         WHERE
-              Category = 'distance'
+              Category = 'shielding'
           and VocationNAME = 'Paladins'
         """)
 urlRow = cursor.fetchall()
@@ -71,7 +71,7 @@ for u in url:
                 break
         cols.append('https://secure.tibia.com/community/?subtopic=characters&name=' + (cols[1].replace(u' ', '+')))
         cols.append(now)  # Insere a data de extração em cada linha
-        if len(cols[0]) < 3:  # Eliminando a linha de "titulo"
+        if cols[0].isnumeric == True:  # Eliminando a linha de "titulo e páginas"
             shielding.append([ele for ele in cols if ele])  # Livrar-se de valores vazios
     lista = list(shielding)
 

@@ -43,7 +43,7 @@ upag = '&currentpage=' # Páginas até 12.
 
 for w in worlds:
         for p in range(1,13): # Definindo as páginas de extração, até 12 (marcar 13 no range)
-            url.append(urli +w+ '&list=' +lists+ '&profession=' +str(0)+ '&currentpage=' +str(p))
+            url.append(urli +w+ '&list=' +lists+ '&profession=' +str(2)+ '&currentpage=' +str(p))
 
         #SOUP
 for u in url:

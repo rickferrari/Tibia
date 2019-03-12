@@ -26,7 +26,7 @@ for cRow in worldsRow:
         worlds.append((worldsRow[w][0]).replace(u' ', '+'))
         w+=1
         
-cursor.execute("""select nome from category where nome='distance'""")
+cursor.execute("""select nome from category where nome='achievements'""")
 listsRow = cursor.fetchall()
 ####l=0
 ####for lRow in listsRow:

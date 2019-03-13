@@ -1,0 +1,30 @@
+UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='world_list_history';
+
+CREATE TRIGGER pop_charinfo_history
+AFTER INSERT ON char_infor
+BEGIN
+INSERT INTO char_infor_history
+(
+  Name,
+  Sex,
+  Vocation,
+  Level,
+  Achievement,
+  Residence,
+  Last_Login,
+  Loyalty_Title,
+  Extract_data
+)
+ VALUES
+(
+  new.Name,
+  new.Sex,
+  new.Vocation,
+  new.Level,
+  new.Achievement,
+  new.Residence,
+  new.Last_Login,
+  new.Loyalty_Title,
+  new.Extract_data
+);new.
+END;

@@ -37,13 +37,6 @@ for cRow in urlRow:
     url.append(urlRow[ul][0])
     ul += 1
 
-# # Montando URL de extração
-# # URL = 'https://secure.tibia.com/community/?subtopic=highscores&world='
-# # Category = {0;'achievements', 1;'axe' , 2;'club', 3;'distance', 4;'experience', 5;'fishing',
-#               6;'fist', 7;'loyalty', 8;'magic', 9;'shielding', 10;'sword'}
-# # Profession = {0;'ALL', 1;'Knights', 2;'Paladins', 3;'Sorcerers', 4;'Druids'}
-# # Páginas até 12.
-
 
     # SOUP
 for u in url:
@@ -81,7 +74,6 @@ conn.commit()
 cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_distance';""")
 conn.commit()
 for dmain in distance:
-    ####print(dmain)
     cursor.execute("""
         INSERT INTO top_distance (Rank, Name, Vocation, Level, World, Link, Extract_data)
         VALUES (?,?,?,?,?,?,?)""", (dmain))

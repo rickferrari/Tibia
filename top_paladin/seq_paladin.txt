@@ -1,30 +1,16 @@
-UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='world_list_history';
+1 - Worlds
+2 - Category
 
-CREATE TRIGGER pop_charinfo_history
-AFTER INSERT ON char_infor
-BEGIN
-INSERT INTO char_infor_history
-(
-  Name,
-  Sex,
-  Vocation,
-  Level,
-  Achievement,
-  Residence,
-  Last_Login,
-  Loyalty_Title,
-  Extract_data
-)
- VALUES
-(
-  new.Name,
-  new.Sex,
-  new.Vocation,
-  new.Level,
-  new.Achievement,
-  new.Residence,
-  new.Last_Login,
-  new.Loyalty_Title,
-  new.Extract_data
-);new.
-END;
+ 1) Distance
+ 2) Magic
+ 3) Experience
+ 4) Loyalty
+ 5) Achievements
+ 6) Shielding
+ 7) Sword
+ 8) Club
+ 9) Axe
+10) Fist
+11) Fishing
+
+assert <valor> condição(== <> ...) <valor>

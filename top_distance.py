@@ -28,10 +28,6 @@ for cRow in worldsRow:
         
 cursor.execute("""select nome from category where nome='distance'""")
 listsRow = cursor.fetchall()
-####l=0
-####for lRow in listsRow:
-####        lists.append((listsRow[l][0]).replace(u' ', '+'))
-####        l+=1
 lists = listsRow[0][0]
 
         #Montando URL de extração

@@ -43,7 +43,7 @@ upag = '&currentpage=' # Páginas até 12.
 
 for w in worlds:
         for p in range(1,13): # Definindo as páginas de extração, até 12 (marcar 13 no range)
-            url.append(urli +w+ '&list=' +lists+ '&profession=' +str(0)+ '&currentpage=' +str(p))
+            url.append(urli +w+ '&list=' +lists+ '&profession=' +str(2)+ '&currentpage=' +str(p))
 
         #SOUP
 for u in url:
@@ -76,14 +76,14 @@ for u in url:
         lista = list(distance)
 
         #Inset data in table
-cursor.execute("""DELETE FROM top_distance""")
+cursor.execute("""DELETE FROM top_achievements""")
 conn.commit()
-cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_distance';""")
+cursor.execute("""UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='top_achievements';""")
 conn.commit()
 for dmain in distance:
         ####print(dmain)
         cursor.execute("""
-        INSERT INTO top_distance (Rank, Name, Vocation, Level, World, Link, Extract_data)
+        INSERT INTO top_achievements (Rank, Name, Vocation, Points, World, Link, Extract_data)
         VALUES (?,?,?,?,?,?,?)""",(dmain))
 conn.commit()
 print('Dados inseridos com sucesso.')

@@ -27,7 +27,6 @@ cursor = conn.cursor()
 # Coletando dados do SQL
 cursor.execute("select name from top_distance order by level desc")
 charsRow = cursor.fetchall()
-
 c = 0
 for cRow in charsRow:
     ##chars.append((charsRow[c][0]).replace(u' ', '+'))

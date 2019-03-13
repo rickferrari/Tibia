@@ -72,7 +72,7 @@ for u in url:
                 break
         cols.append('https://secure.tibia.com/community/?subtopic=characters&name=' + (cols[1].replace(u' ', '+')))
         cols.append(now)  # Insere a data de extração em cada linha
-        if len(cols[0]) < 3:  # Eliminando a linha de "titulo"
+        if cols[0].isnumeric == True: # Eliminando a linha de "titulo e páginas"
             achievements.append([ele for ele in cols if ele])  # Livrar-se de valores vazios
     lista = list(achievements)
 

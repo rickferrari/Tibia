@@ -21,6 +21,8 @@ cursor.execute(""" Drop TABLE if exists top_sword """)
 cursor.execute(""" Drop TABLE if exists top_axe """)
 cursor.execute(""" Drop TABLE if exists top_fishing """)
 cursor.execute(""" Drop TABLE if exists top_experience """)
+cursor.execute(""" Drop TABLE if exists Filters_Houses """)
+cursor.execute(""" Drop TABLE if exists House """)
 conn.commit()
 #print('Tabela dropada com sucesso.')
 
@@ -210,6 +212,40 @@ CREATE TABLE if not exists top_experience (
     Link VARCHAR(100) NULL,
     Extract_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
+""")
+
+# criando a tabela top_experience (schema)
+cursor.execute("""
+CREATE TABLE if not exists Filters_Houses
+(
+    Id INTEGER not null	primary key autoincrement,
+    World VARCHAR(20),
+    Town VARCHAR(20),
+    State VARCHAR(15),
+    Sort  VARCHAR(10),
+    Type VARCHAR(15),
+    Link VARCHAR(100),
+	Extract_data TIMESTAMP default CURRENT_TIMESTAMP not null
+)
+;
+""")
+
+# criando a tabela top_experience (schema)
+cursor.execute("""
+CREATE TABLE if not exists House
+(
+	Id INTEGER not null	primary key autoincrement,
+	World VARCHAR(20),
+    Town VARCHAR(20),
+    Nome VARCHAR(50),
+    Size VARCHAR(20),
+    Rent VARCHAR(20),
+    FRent VARCHAR(20),
+    Status VARCHAR(20),
+    Owner VARCHAR(20),
+	Extract_data TIMESTAMP default CURRENT_TIMESTAMP not null
+)
+;
 """)
 
 conn.commit()

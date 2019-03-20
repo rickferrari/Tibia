@@ -42,11 +42,11 @@ for u in url:
 
         ## Pasando pelas linhas e agrupando em uma lista
         for row in rows: #Organizando as linhas da extração
-            print(row)
-            print('##########################')
+            #print('##########################')
             cols = row.find_all('td')
-            #cols = [ele.text.strip() for ele in cols]
-            #print(cols)
+            cols = [ele.text.strip() for ele in cols]
+            cols.append([ele for ele in cols if ele])
+            print(cols)
             #print('########################################################')
 #            for w in worlds:
 #                    if w in u:
@@ -56,7 +56,7 @@ for u in url:
             #if len(cols[0]) < 3: #Eliminando a linha de "titulo"
             #        house.append([ele for ele in cols if ele]) #Livrar-se de valores vazios
         #lista = list(house)
-print(cols)
+#print(cols)
 #
 #        #Inset data in table
 #cursor.execute("""DELETE FROM top_distance""")
